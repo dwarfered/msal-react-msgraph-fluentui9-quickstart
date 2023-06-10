@@ -7,6 +7,7 @@ Microsoft Authentication Library (MSAL), React Typescript, MS Graph and FluentUI
 - react v18.2.0
 - react-router-dom v6.12.1
 - typescript v4.9.5
+- [Fluent UI](https://developer.microsoft.com/en-us/fluentui#/)
 
 Based upon the samples:
 - https://github.com/Azure-Samples/ms-identity-javascript-react-tutorial
