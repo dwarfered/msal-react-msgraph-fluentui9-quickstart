@@ -1,4 +1,4 @@
-import { Configuration, PopupRequest } from '@azure/msal-browser';
+import { Configuration, LogLevel, PopupRequest } from '@azure/msal-browser';
 
 const ApplicationId = '<YOUR CLIENT ID>';
 const TenantId = '<YOUR AZURE AD TENANT ID>';
@@ -11,7 +11,32 @@ export const msalConfig: Configuration = {
     redirectUri: '/',
     postLogoutRedirectUri: '/',
   },
+  cache: {
+    cacheLocation: 'localStorage', // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
+    storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
+  },
   system: {
+    loggerOptions: {
+      loggerCallback: (level, message, containsPii) => {
+        if (containsPii) {
+          return;
+        }
+        switch (level) {
+          case LogLevel.Error:
+            console.error(message);
+            return;
+          case LogLevel.Info:
+            console.info(message);
+            return;
+          case LogLevel.Verbose:
+            console.debug(message);
+            return;
+          case LogLevel.Warning:
+            console.warn(message);
+            return;
+        }
+      },
+    },
     allowNativeBroker: false, // Disables WAM Broker
   },
 };
