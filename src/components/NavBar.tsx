@@ -2,8 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SignInSignOutButton from './SignInSignOutButton';
 import {
-  Link,
+  Button,
   makeStyles,
+  shorthands,
   tokens,
   Toolbar,
   ToolbarGroup,
@@ -15,10 +16,12 @@ const useStyles = makeStyles({
   toolbar: {
     justifyContent: 'space-between',
     backgroundColor: tokens.colorBrandBackground,
+    ...shorthands.padding(0),
   },
-  link: {
+  toolbarButton: {
     color: tokens.colorBrandBackgroundInverted,
     ...typographyStyles.subtitle2,
+
   },
 });
 
@@ -29,10 +32,10 @@ export const FarGroup = (props: Partial<ToolbarProps>) => {
   const styles = useStyles();
   return (
     <Toolbar aria-label="with Separeted Groups" className={styles.toolbar}>
-      <ToolbarGroup className={styles.link} role="presentation">
-        <Link className={styles.link} onClick={handleOnClick}>
+      <ToolbarGroup role="presentation">
+        <Button shape='square' size='large' className={styles.toolbarButton} appearance="primary" onClick={handleOnClick}>
           ms-identity-typescript-react
-        </Link>
+        </Button>
       </ToolbarGroup>
       <ToolbarGroup role="presentation">
         <SignInSignOutButton />
